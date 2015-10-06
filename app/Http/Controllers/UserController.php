@@ -19,7 +19,7 @@ class UserController extends Controller
 	 */
 	public function index()
 	{
-		$users = Users::latest()->get();
+		$users = User::latest()->get();
 		return view('user.index', compact('users'));
 	}
 
@@ -41,7 +41,7 @@ class UserController extends Controller
 	public function store(Request $request)
 	{
 		//$this->validate($request, ['name' => 'required']); // Uncomment and modify if needed.
-		Users::create($request->all());
+		User::create($request->all());
 		return redirect('user');
 	}
 
@@ -53,7 +53,7 @@ class UserController extends Controller
 	 */
 	public function show($id)
 	{
-		$user = Users::findOrFail($id);
+		$user = User::findOrFail($id);
 		return view('user.show', compact('user'));
 	}
 
@@ -65,7 +65,7 @@ class UserController extends Controller
 	 */
 	public function edit($id)
 	{
-		$user = Users::findOrFail($id);
+		$user = User::findOrFail($id);
 		return view('user.edit', compact('user'));
 	}
 
@@ -78,7 +78,7 @@ class UserController extends Controller
 	public function update($id, Request $request)
 	{
 		//$this->validate($request, ['name' => 'required']); // Uncomment and modify if needed.
-		$user = Users::findOrFail($id);
+		$user = User::findOrFail($id);
 		$user->update($request->all());
 		return redirect('user');
 	}
@@ -91,7 +91,7 @@ class UserController extends Controller
 	 */
 	public function destroy($id)
 	{
-		Users::destroy($id);
+		User::destroy($id);
 		return redirect('user');
 	}
 

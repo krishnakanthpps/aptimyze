@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use Mail;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -11,6 +14,14 @@ use Carbon\Carbon;
 
 class ContactController extends Controller
 {
+	/**
+	 * ContactController constructor.
+	 */
+	public function __construct()
+	{
+		$this->middleware('auth', ['except' => ['create']]);
+	}
+
 
 	/**
 	 * Display a listing of the resource.
@@ -19,6 +30,7 @@ class ContactController extends Controller
 	 */
 	public function index()
 	{
+
 		$contacts = Contacts::latest()->get();
 		return view('contact.index', compact('contacts'));
 	}
@@ -35,14 +47,48 @@ class ContactController extends Controller
 
 	/**
 	 * Store a newly created resource in storage.
-	 *
+	 * @param Request $request
 	 * @return Response
 	 */
 	public function store(Request $request)
 	{
-		//$this->validate($request, ['name' => 'required']); // Uncomment and modify if needed.
-		Contacts::create($request->all());
-		return redirect('contact');
+		$this->validate($request, ['name' => 'required',
+			'email' => 'email|required',
+			'phone' => array('regex: /^([0]|\+91)?[789]\d{9}$/'),
+			'message' => 'required',
+		]);
+
+		$data=$request->all();
+
+		if (Auth::check())
+		{
+			$data['user_id']=Auth::id();
+		}
+
+		Contacts::create($data);
+
+		$email = trans('contact.contact_email');
+		$name = trans('contact.contact_email_name');
+		$subject = trans('contact.contact_subject_received');
+
+		$data['messages']=$data['message'];
+//		dd($data);
+
+		Mail::queue('emails.contact_received', $data, function($message) use ($email,$name,$subject)
+		{
+			$message->bcc("abhishek.bhatia@hobbyix.com","Abhishek Bhatia")->to($email, $name)->subject($subject);
+		});
+
+		$name = $data['name'];
+		$email = $data['email'];
+		$subject= trans('contact.contact_subject_submitted');
+
+		Mail::queue('emails.contact_submitted', $data, function($message) use ($email, $name ,$subject)
+		{
+			$message->bcc("abhishek.bhatia@hobbyix.com","Abhishek Bhatia")->to($email, $name)->subject($subject);
+		});
+
+		return redirect('/')->with('success', trans('contact.contact_created'));
 	}
 
 	/**

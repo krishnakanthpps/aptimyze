@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>Edit Contact</h1>
+    <h1>Edit Message</h1>
     <hr/>
 
     {!! Form::model($contact, ['method' => 'PATCH', 'action' => ['ContactController@update', $contact->id], 'class' => 'form-horizontal']) !!}

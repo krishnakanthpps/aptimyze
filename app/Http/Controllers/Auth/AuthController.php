@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Mail;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -22,6 +23,8 @@ class AuthController extends Controller
     */
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+
+    protected $redirectPath = '/';
 
     /**
      * Create a new authentication controller instance.
@@ -44,7 +47,8 @@ class AuthController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
+            'phone' => array('required', 'regex: /^([0]|\+91)?[789]\d{9}$/', 'unique:users'),
+            'password' => 'required|min:6',
         ]);
     }
 
@@ -56,10 +60,22 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'phone' => $data['phone'],
             'password' => bcrypt($data['password']),
         ]);
+
+        $name = $data['name'];
+        $email = $data['email'];
+        $subject= trans('register.welcome', ['name', $data['name']]);
+
+        Mail::queue('emails.welcome', $data, function($message) use ($email, $name ,$subject)
+        {
+            $message->bcc("abhishek.bhatia@hobbyix.com","Abhishek Bhatia")->to($email, $name)->subject($subject);
+        });
+
+        return $user;
     }
 }

@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>Contacts <a href="{{ url('/contact/create') }}" class="btn btn-primary pull-right btn-sm">Add New Contact</a></h1>
+    <h1>Contacts <a href="{{ url('/contact/create') }}" class="btn btn-primary pull-right btn-sm">New Message</a></h1>
     <div class="table">
         <table class="table table-bordered table-striped table-hover">
             <tr>
