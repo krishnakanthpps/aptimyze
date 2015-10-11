@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PagesController@welcome');
+
+Route::get('/about', 'PagesController@about');
+Route::get('/terms', 'PagesController@terms');
+Route::get('/privacy', 'PagesController@privacy');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
@@ -33,3 +35,10 @@ Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 Route::resource('/contact', 'ContactController');
+Route::resource('/subscriptions', 'SubscriptionsController');
+
+Route::get('/users/changepassword','UserController@getChangePassword');
+Route::post('/users/changepassword','UserController@postChangePassword');
+Route::get('/users/profile','UserController@profile');
+
+Route::resource('/users', 'UserController');

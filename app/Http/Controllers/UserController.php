@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Hash;
+use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Users;
+use App\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
 class UserController extends Controller
 {
-
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -24,18 +25,57 @@ class UserController extends Controller
 	}
 
 	/**
-	 * Show the form for creating a new resource.
+	 * Show the profile for existing user.
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function profile()
 	{
-		return view('user.create');
+		$user_id=Auth::id();
+		$user=User::find($user_id);
+		return view('user.profile',compact('user'));
+	}
+
+	/**
+	 * To go to "Change Password" page
+	 * @return View
+	 */
+	public function getChangePassword()
+	{
+		$user_id=Auth::id();
+		$user=User::find($user_id);
+		return view('user.changePassword',compact('user'));
+	}
+
+	/**
+	 * Logic for changing the password
+	 * @param Request $request
+	 * @return Routes
+	 */
+	public function postChangePassword(Request $request)
+	{
+		$id=Auth::id();
+		$this->validate($request, User::$rulesChangePassword);
+		$userDetails = User::find($id);
+		$current_password = $request->input('current_password');
+		$password = $request->input('password');
+//		dd($current_password);
+		if(Hash::check($current_password, $userDetails->password))
+		{
+			$userDetails->password = Hash::make($password);
+			$userDetails->save();
+			return redirect('users/profile')->with('success', trans('auth.user_password_changed'));
+		}
+		else
+		{
+			return redirect()->back()->with('failure', trans('auth.user_password_change_failed'));
+		}
 	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
+	 * @param Request $request
 	 * @return Response
 	 */
 	public function store(Request $request)
@@ -72,6 +112,7 @@ class UserController extends Controller
 	/**
 	 * Update the specified resource in storage.
 	 *
+	 * @param Request $request
 	 * @param  int  $id
 	 * @return Response
 	 */
@@ -80,7 +121,7 @@ class UserController extends Controller
 		//$this->validate($request, ['name' => 'required']); // Uncomment and modify if needed.
 		$user = User::findOrFail($id);
 		$user->update($request->all());
-		return redirect('user');
+		return redirect('/users/profile')->with('success', trans('auth.user_update_successful'));
 	}
 
 	/**

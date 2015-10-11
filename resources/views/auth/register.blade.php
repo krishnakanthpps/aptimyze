@@ -5,7 +5,7 @@
     <h1>Register</h1>
     <hr/>
 
-    {!! Form::open(['url' => '/auth/register', 'id'=>'signUpForm', 'class' => 'form-horizontal']) !!}
+    {!! Form::open(['url' => '/auth/register', 'id'=>'register', 'class' => 'form-horizontal']) !!}
     <div class="form-group">
         {!! Form::label('name', 'Name: ', ['class' => 'col-sm-3 control-label']) !!}
         <div class="col-sm-6">
@@ -49,7 +49,7 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#signUpForm').bootstrapValidator({
+        $('#register').bootstrapValidator({
             message: 'This value is not valid',
             fields: {
                 name: {

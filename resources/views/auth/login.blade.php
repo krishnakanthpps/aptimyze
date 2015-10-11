@@ -5,7 +5,7 @@
     <h1>Login</h1>
     <hr/>
 
-    {!! Form::open(['url' => '/auth/login', 'id'=> 'loginForm',  'class' => 'form-horizontal']) !!}
+    {!! Form::open(['url' => '/auth/login', 'id'=> 'login',  'class' => 'form-horizontal']) !!}
     <div class="form-group">
         {!! Form::label('email', 'Email: ', ['class' => 'col-sm-3 control-label']) !!}
         <div class="col-sm-6">
@@ -40,7 +40,7 @@
 @section('pagejquery')
     <script type="text/javascript" >
         $(document).ready(function(){
-            $('#loginForm').bootstrapValidator({
+            $('#login').bootstrapValidator({
                 message: 'This value is not valid',
                 fields: {
                     password: {

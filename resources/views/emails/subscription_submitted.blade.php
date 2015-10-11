@@ -12,17 +12,16 @@
     </div>
     <div style="padding:0px 40px">
         <h1 style="font-size:150%; color:#000;">
-            Dear {{$first_name}},
+            Dear {{$name}},
         </h1>
         <p style="color:#000;">
-            You have submitted a contact us message on  <a href="{{URL::to('/')}}"> {{url('/')}}</a>
+            You have submitted your email for subscription to updates on  <a href="{{URL::to('/')}}"> {{url('/')}}</a>
         </p>
         <div style="background:#FAFDFE;border:2px solid #1E2C4F;display:inline-block;min-width:100%;overflow:hidden;border-radius:10px;">
             <div style="background:#1E2C4F;padding:10px 5px; color:white">
             </div>
             <div style="max-width:100%;padding:1.6% 2% 5% 2%;">
-                Thanks for reaching out. Please allow us about 3-5 working days to reach out to you with a proper response.
-                Our team will review your message and will get back to you soon.
+                Thank you for showing interest in aptimyze.
                 Till then feel free to explore our site.
             </div>
         </div>

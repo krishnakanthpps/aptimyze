@@ -36,4 +36,15 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+
+    /**
+     * The rules for variables in change password form.
+     *
+     * @var array
+     */
+    public static $rulesChangePassword=[
+        'current_password'=>'required',
+        'password'=>'required|min:6|regex: /^[a-zA-Z0-9!@#$%&_]+$/',
+    ];
 }

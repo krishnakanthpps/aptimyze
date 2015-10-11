@@ -2,7 +2,7 @@
 
 return [
 
-    "contact_created"=>"Your message have been added successfully. Our team will go through it and get back to you soon.",
+    "contact_created"=>"Your message have been added successfully. Please allow us about 3-5 working days to reach out to you with a proper response.",
 
     "contact_create_failed" => "Sorry, We are unable to add the message",
 

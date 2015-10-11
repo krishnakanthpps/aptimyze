@@ -2,24 +2,20 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Contacts extends Model  {
+class Country extends Model  {
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'contacts';
+    protected $table = 'countries';
 
     /**
      * Attributes that should be mass-assignable.
      *
      * @var array
      */
-    protected $guarded = [
-        'id',
-        'deleted_at',
-        'created_at',
-        'updated_at',
-    ];
+    protected $fillable = ['country'];
+
 }

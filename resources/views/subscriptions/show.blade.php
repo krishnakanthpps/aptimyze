@@ -2,14 +2,14 @@
 
 @section('content')
 
-    <h1>User</h1>
+    <h1>Subscription</h1>
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
             <tr>
-                <th>ID.</th> <th>Name</th><th>Email</th><th>Phone</th>
+                <th>ID.</th> <th>Email</th>
             </tr>
             <tr>
-                <td>{{ $user->id }}</td> <td> {{ $user->name }} </td><td> {{ $user->email }} </td><td> {{ $user->phone }} </td>
+                <td>{{ $subscription->id }}</td> <td> {{ $subscription->email }} </td>
             </tr>
         </table>
     </div>

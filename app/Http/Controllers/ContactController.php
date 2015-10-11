@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Auth;
 use Mail;
 
+use App\Country;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -30,7 +32,6 @@ class ContactController extends Controller
 	 */
 	public function index()
 	{
-
 		$contacts = Contacts::latest()->get();
 		return view('contact.index', compact('contacts'));
 	}
@@ -42,7 +43,13 @@ class ContactController extends Controller
 	 */
 	public function create()
 	{
-		return view('contact.create');
+		$countries=Country::lists('country');
+		$salutation=config('global.salutation');
+		$test_phase=config('global.test_phase');
+		$type=config('global.type');
+		$load_requirement=config('global.load_requirement');
+		$way=config('global.way');
+		return view('contact.create', compact('countries', 'salutation', 'test_phase', 'type', 'load_requirement', 'way'));
 	}
 
 	/**
@@ -52,10 +59,16 @@ class ContactController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		$this->validate($request, ['name' => 'required',
+		$this->validate($request, [
+			'salutation' => 'required',
+			'first_name' => 'required',
+			'last_name' => 'required',
+			'organization' => 'required',
+			'current_tool' => 'max:100',
 			'email' => 'email|required',
 			'phone' => array('regex: /^([0]|\+91)?[789]\d{9}$/'),
-			'message' => 'required',
+			'message' => 'required|max:2000',
+			'way' => 'required',
 		]);
 
 		$data=$request->all();
@@ -71,15 +84,20 @@ class ContactController extends Controller
 		$name = trans('contact.contact_email_name');
 		$subject = trans('contact.contact_subject_received');
 
-		$data['messages']=$data['message'];
-//		dd($data);
+		$data['contact']=$data;
+		$data['countries']=Country::lists('country');
+		$data['salutation']=config('global.salutation');
+		$data['test_phase']=config('global.test_phase');
+		$data['type']=config('global.type');
+		$data['load_requirement']=config('global.load_requirement');
+		$data['way']=config('global.way');
 
 		Mail::queue('emails.contact_received', $data, function($message) use ($email,$name,$subject)
 		{
 			$message->bcc("abhishek.bhatia@hobbyix.com","Abhishek Bhatia")->to($email, $name)->subject($subject);
 		});
 
-		$name = $data['name'];
+		$name = $data['first_name'];
 		$email = $data['email'];
 		$subject= trans('contact.contact_subject_submitted');
 
@@ -100,7 +118,13 @@ class ContactController extends Controller
 	public function show($id)
 	{
 		$contact = Contacts::findOrFail($id);
-		return view('contact.show', compact('contact'));
+		$countries=Country::lists('country');
+		$salutation=config('global.salutation');
+		$test_phase=config('global.test_phase');
+		$type=config('global.type');
+		$load_requirement=config('global.load_requirement');
+		$way=config('global.way');
+		return view('contact.show', compact('contact', 'countries', 'salutation','test_phase', 'type', 'load_requirement', 'way'));
 	}
 
 	/**
@@ -111,8 +135,15 @@ class ContactController extends Controller
 	 */
 	public function edit($id)
 	{
+
 		$contact = Contacts::findOrFail($id);
-		return view('contact.edit', compact('contact'));
+		$countries=Country::lists('country');
+		$salutation=config('global.salutation');
+		$test_phase=config('global.test_phase');
+		$type=config('global.type');
+		$load_requirement=config('global.load_requirement');
+		$way=config('global.way');
+		return view('contact.edit', compact('contact', 'countries', 'salutation','test_phase', 'type', 'load_requirement', 'way'));
 	}
 
 	/**
@@ -126,7 +157,7 @@ class ContactController extends Controller
 		//$this->validate($request, ['name' => 'required']); // Uncomment and modify if needed.
 		$contact = Contacts::findOrFail($id);
 		$contact->update($request->all());
-		return redirect('contact');
+		return redirect('contact')->with('success', trans('contact.contact_updated'));
 	}
 
 	/**

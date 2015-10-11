@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>Register</h1>
+    <h1>Reset Password</h1>
     <hr/>
 
     {!! Form::open(['url' => '/password/reset', 'id'=>'resetForm', 'class' => 'form-horizontal']) !!}
@@ -75,14 +75,9 @@
                             notEmpty: {
                                 message: 'Password is required and cannot be empty'
                             },
-                            stringLength: {
-                                min: 6,
-                                max: 20,
-                                message: 'Password must be more than 6 and less than 20 characters long'
-                            },
-                            regexp: {
-                                regexp: /^[a-zA-Z0-9!@#$-%&_]+$/,
-                                message: 'Password can only consist of alphabetical, number and following special symbol !,@,#,$,-,%,&,_'
+                            identical: {
+                                field: 'password',
+                                message: 'The password and its confirm are not the same'
                             }
                         }
                     }

@@ -1,0 +1,105 @@
+html, body {
+    height: 100%;
+}
+body {
+    padding-top: 70px;
+    margin: 0;
+    /*padding: 0;*/
+    width: 100%;
+    display: table;
+    font-weight: 100;
+    font-family: 'Lato';
+}
+
+.container {
+    /*text-align: center;*/
+    /*display: table-cell;*/
+    /*vertical-align: middle;*/
+}
+
+.content {
+    text-align: center;
+    min-height: 500px;
+    display: inline-block;
+}
+
+.title {
+    font-size: 48px;
+}
+
+.space-line{
+    padding-top: 20px;
+}
+
+.userInfoListing {  text-align: right;font-size: 18px;padding-top: 13px;float:right; }
+
+.userInfoListing .user_name{max-width:120px;padding: 3px 0px 3px 10px;float:left }
+
+.userInfoListing .down {padding: 2px 5px;float:left }
+
+.MainHeaderUserInfo { padding-right: 5px;text-align: right;font-size: 18px !important;float: right; }
+
+.MainHeaderUserInfo a,.userInfoListing a {  text-decoration: none;color: white; }
+
+.userInfoListing a:hover, a:active, a:focus {text-decoration: none;outline: none;}
+
+
+.user_account_options button, .dropdown-toggle { background: none;color: white;font-family: 'Montserrat', sans-serif;font-weight: lighter; max-width: 155px;}
+
+.user_account_options .btn:hover, .btn:active {color: white !important;}
+
+.user_account_options ul {right: 0;left: auto;margin-top: -1px;border-radius: 0px;}
+
+.user_account_options .btn:focus, .btn:active:focus, .btn.active:focus { outline: 0 none; }
+
+.user_account_options .btn-primary { color: #ffffff;border-color:#20cfb1;padding: 0;}
+
+.user_account_options .btn-primary:active{  box-shadow: none; }
+
+
+/*
+    changePassword Page
+*/
+.uac_change_password {margin-top: 20px !important;}
+
+/*
+    Profile page
+*/
+.uac_profile li { margin: 10px;}
+
+.uac_profile_itmes {margin: 15px 0px 19px 20px;font-size: 17px; }
+
+/*
+    Sidebar
+*/
+
+
+.user_account_page { background:#f0f3f6;min-height: 420px;width: 100%;color: #333; }
+
+.uac_container { margin-top: 50px;}
+
+.uac_sidebar, .uac_profile, .uac_orders { font-family: 'Open Sans',sans-serif;background: none repeat scroll 0% 0% #FFF;border: 1px solid #E8E8E8;padding: 10px 20px 10px 20px;margin-bottom: 10px; }
+
+.uac_sidebar_header{  padding: 7px 15px 5px 15px;border-bottom:1px solid;border-color: #20cfb1;font-size: 21px;color: #333;text-align: center;}
+
+.uac_credits_container {padding: 10px 10px;font-size: 20px;border-bottom:1px solid;border-color: #20cfb1;}
+
+.uac_credits_container .fa {color:  #20cfb1;font-size: 25px;text-align: left;}
+
+.uac_container { margin-top: 50px;}
+
+.uac_nav_items {font-size: 16px;margin: 10px 10px 10px 0px;width: 100%;padding-right: 0px;}
+
+.uac_nav_items li { margin-top: 3px;width: 100%;padding:3px 0px 3px 10px;}
+
+.uac_nav_items a { text-decoration: none;color: #333}
+
+.uac_nav_items .active { background: #E2E2E2;}
+
+.rating { overflow: hidden;display: inline-block; }
+
+.rating-input { float: right;width: 16px;height: 16px;padding: 0;margin: 0 0 0 -16px;opacity: 0;}
+
+.rating-star { text-align: left; position: relative;float: right;display: block;width: 16px;height: 16px;background: url(/assets/images/sample/star.png) 0 -16px; }
+
+.rating-star:hover,.rating-star:hover ~ .rating-star,.rating-input:checked ~ .rating-star { background-position: 0 0; }
