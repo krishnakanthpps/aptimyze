@@ -12,7 +12,14 @@
                 We can help you run tests up to 5000 concurrent users on across different regions across the world without any setup or installation.
             </p>
         </div>
-        <a class="btn btn-primary" href="{{"subscriptions/create"}}">Subscribe for updates</a>
+        <div class="centered">
+            <a href="{{url('/test')}}"><button class="btn btn-lg btn-primary">Run Test for 5 virtual users</button></a>
+            <a href="{{url('/test')}}"><button class="btn btn-lg btn-success">Run Test for 25 virtual users</button></a>
+        </div>
+        <div class="row clearfix">
+            &nbsp;
+        </div>
+        <a class="btn btn-info" href="{{"subscriptions/create"}}">Subscribe for updates</a>
         <p>
             Subscribe for updates of our latest offerings and offers.
         </p>

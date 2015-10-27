@@ -50,15 +50,17 @@ class SubscriptionsController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		$this->validate($request, ['email' => 'required']); // Uncomment and modify if needed.
+		$this->validate($request, ['email' => 'required|email|unique:subscriptions']); // Uncomment and modify if needed.
 
 		$data=$request->all();
 
 		Subscriptions::create($data);
 
-		$name = trans('subscription_name');
+		$data['name'] = trans('subscription.subscription_name');
+
+		$name = trans('subscription.subscription_name');
 		$email = $data['email'];
-		$subject= trans('subscription.subscription_subject_submitted');
+		$subject= trans('subscription.subscription_email_subject');
 
 		Mail::queue('emails.subscription_submitted', $data, function($message) use ($email, $name ,$subject)
 		{

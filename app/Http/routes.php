@@ -42,3 +42,5 @@ Route::post('/users/changepassword','UserController@postChangePassword');
 Route::get('/users/profile','UserController@profile');
 
 Route::resource('/users', 'UserController');
+
+Route::resource('test', 'TestController');

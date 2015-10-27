@@ -7,7 +7,7 @@
     <div style="background:#fff; color:#000; max-width: 100%;  padding: 20px 0px 20px 25px;border-radius: 15px;">
         <div  style="text-align:center;">
             <h1 style="color:#000;  margin-right : 25px;">
-                HOBBYIX
+                Aptimyze
             </h1>
         </div>
         <h1 style="font-size:150%; color:#000;">

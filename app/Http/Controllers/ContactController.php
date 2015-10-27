@@ -43,7 +43,9 @@ class ContactController extends Controller
 	 */
 	public function create()
 	{
-		$countries=Country::lists('country');
+		$countries=Country::lists('country')->all();
+		array_unshift($countries,'');
+		unset($countries[0]);
 		$salutation=config('global.salutation');
 		$test_phase=config('global.test_phase');
 		$type=config('global.type');
