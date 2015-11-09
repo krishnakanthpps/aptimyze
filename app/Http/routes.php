@@ -41,6 +41,13 @@ Route::get('/users/changepassword','UserController@getChangePassword');
 Route::post('/users/changepassword','UserController@postChangePassword');
 Route::get('/users/profile','UserController@profile');
 
+Route::get('test/count', 'TestController@count');
+
+Route::get('test/graph', 'TestController@graph');
+
+Route::get('test/chart', 'TestController@chart');
+
 Route::resource('/users', 'UserController');
 
 Route::resource('test', 'TestController');
+

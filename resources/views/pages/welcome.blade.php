@@ -13,8 +13,8 @@
             </p>
         </div>
         <div class="centered">
-            <a href="{{url('/test')}}"><button class="btn btn-lg btn-primary">Run Test for 5 virtual users</button></a>
-            <a href="{{url('/test')}}"><button class="btn btn-lg btn-success">Run Test for 25 virtual users</button></a>
+            <a href="{{url('/test/create')}}"><button class="btn btn-lg btn-primary">Run Test for 5 virtual users</button></a>
+            <a href="{{url('/test/create')}}"><button class="btn btn-lg btn-success">Run Test for 25 virtual users</button></a>
         </div>
         <div class="row clearfix">
             &nbsp;

@@ -5,10 +5,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Aptimyze</title>
-	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/flatly/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css"/>
+	<link rel="stylesheet" href="{{asset('/assets/css/vendor/bootstrap-3.3.5.min.css')}}">
+	<link rel="stylesheet" href="{{asset('/assets/css/vendor/font-awesome-4.4.0.min.css')}}">
+	<link rel="stylesheet" href="{{asset('/assets/css/vendor/bootstrapValidator-0.5.3.min.css')}}">
+	<link rel="stylesheet" href="{{asset('/assets/css/vendor/rickshaw.min.css')}}">
 	{{-- Custom stylesheet --}}
 	<link rel="stylesheet" href="{{asset('/assets/css/style.css')}}">
 </head>
@@ -25,9 +25,12 @@
 
 	@include('templates.footer')
 	<!-- Scripts -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
+	<script src="{{asset('/assets/js/vendor/jquery-1.10.2.min.js')}}"></script>
+	<script src="{{asset('/assets/js/vendor/bootstrap-3.3.5.min.js')}}"></script>
+	<script src="{{asset('/assets/js/vendor/bootstrapValidator-0.5.3.min.js')}}"></script>
+	<script src="{{asset('/assets/js/vendor/d3.v2.min.js')}}"></script>
+	<script src="{{asset('/assets/js/vendor/d3.layout.min.js')}}"></script>
+	<script src="{{asset('/assets/js/vendor/rickshaw.min.js')}}"></script>
 	@yield('pagejquery')
 </body>
 </html>

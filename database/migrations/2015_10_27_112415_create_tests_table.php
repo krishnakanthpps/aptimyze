@@ -16,9 +16,10 @@ class CreateTestsTable extends Migration
             Schema::create('tests', function(Blueprint $table) {
                 $table->increments('id');
                 $table->string('url');
+                $table->integer('user_id')->foreign('user_id')->references('id')->on('users')->nullable();
                 $table->string('random_string');
                 $table->string('pid');
-                $table->string('test_running');
+                $table->boolean('test_running');
                 $table->timestamps();
             });
 
