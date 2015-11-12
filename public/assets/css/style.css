@@ -31,6 +31,7 @@ body {
     padding-top: 20px;
 }
 
+
 .userInfoListing {  text-align: right;font-size: 18px;padding-top: 13px;float:right; }
 
 .userInfoListing .user_name{max-width:120px;padding: 3px 0px 3px 10px;float:left }
@@ -136,3 +137,25 @@ body {
     padding-top: 5px;
     font-size: 16px;
 }*/
+
+
+/* For Test Create Page */
+
+#site, #statusMessage{
+    color: green;
+}
+
+.tempHide{
+    display: none;
+}
+
+#rickshaw{
+    margin:0px auto;
+    width:660px;
+}
+
+#chart{
+    border:1px solid #59525B;
+    min-width: 500px;
+    min-height: 500px;
+}

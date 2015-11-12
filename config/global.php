@@ -30,4 +30,6 @@ return [
         'Email'
     ),
 
+    'test_running_time'=>10,
+
 ];

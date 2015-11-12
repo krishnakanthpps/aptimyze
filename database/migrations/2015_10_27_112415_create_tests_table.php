@@ -18,8 +18,8 @@ class CreateTestsTable extends Migration
                 $table->string('url');
                 $table->integer('user_id')->foreign('user_id')->references('id')->on('users')->nullable();
                 $table->string('random_string');
-                $table->string('pid');
                 $table->boolean('test_running');
+                $table->boolean('test_started');
                 $table->timestamps();
             });
 
