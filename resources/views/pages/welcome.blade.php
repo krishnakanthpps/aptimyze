@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="content">
+    <div class="content text-center">
         <div class="title">Aptimyze : Performance Testing : Smooth and easy.</div>
         <div class="text-justify space-line">
             <p class="lead">
@@ -13,13 +13,26 @@
             </p>
         </div>
         <div class="centered">
-            <a href="{{url('/test/create')}}"><button class="btn btn-lg btn-primary">Run Test for 5 virtual users</button></a>
-            <a href="{{url('/test/create')}}"><button class="btn btn-lg btn-success">Run Test for 25 virtual users</button></a>
+            <a href="{{url('/test/create')}}" class="btn btn-lg btn-primary">Run Test for 5 virtual users</a>
+            <a href="{{url('/test/create')}}" class="btn btn-lg btn-success">Run Test for 25 virtual users</a>
         </div>
         <div class="row clearfix">
             &nbsp;
         </div>
-        <a class="btn btn-info" href="{{"subscriptions/create"}}">Subscribe for updates</a>
+        {!! Form::open(['url' => 'subscriptions', 'class' => 'form-horizontal']) !!}
+            <div class="form-group">
+                {!! Form::label('email', 'Email: ', ['class' => 'col-sm-3 control-label']) !!}
+                <div class="col-sm-6">
+                    {!! Form::text('email', null, ['class' => 'form-control']) !!}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-3">
+                    {!! Form::submit('Subscribe for updates', ['class' => 'btn btn-info form-control']) !!}
+                </div>
+            </div>
+        {!! Form::close() !!}
         <p>
             Subscribe for updates of our latest offerings and offers.
         </p>

@@ -2,63 +2,68 @@
 
 @section('content')
 
-    <div id="testDiv">
-        <h1>Run New Test</h1>
-        <hr/>
+    <div class="content">
+        <div id="testDiv">
+            <h1>Run New Test</h1>
+            <hr/>
 
-        {!! Form::open(['url'=>'test', "id"=>"testForm", 'class' => 'form-horizontal']) !!}
+            {!! Form::open(['url'=>'test', "id"=>"testForm", 'class' => 'form-horizontal']) !!}
 
-            <div class="form-group">
-                {!! Form::label('url', 'Url: ', ['class' => 'col-sm-3 control-label']) !!}
-                <div class="col-sm-6">
-                    {!! Form::url('url', null, ['class' => 'form-control']) !!}
+                <div class="form-group">
+                    {!! Form::label('url', 'Url: ', ['class' => 'col-sm-3 control-label']) !!}
+                    <div class="col-sm-6">
+                        {!! Form::url('url', null, ['class' => 'form-control']) !!}
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <div class="col-sm-offset-3 col-sm-3">
-                    {!! Form::submit('Run Test', ['class' => 'btn btn-primary form-control send-btn']) !!}
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-3">
+                        {!! Form::submit('Run Test', ['class' => 'btn btn-primary form-control send-btn']) !!}
+                    </div>
                 </div>
-            </div>
-        {!! Form::close() !!}
+            {!! Form::close() !!}
 
-    </div>
+        </div>
 
 
-    <h2 id="site"></h2>
+        <h2 id="site"></h2>
 
-    <div id="testResponse" class="tempHide">
+        <div id="testResponse" class="tempHide">
 
-        <h1>Running Test</h1>
-        <hr/>
-        <span id='statusMessage'></span>
-    </div>
+            <h1>Running Test</h1>
+            <hr/>
+            <span id='statusMessage'></span>
+        </div>
 
-    <div id="stopTestDiv" class="tempHide">
-        <button class="btn" id="stopBtn">STOP</button>
-    </div>
+        <div id="stopTestDiv" class="tempHide">
+            <button class="btn" id="stopBtn">STOP</button>
+        </div>
 
-    <div id="testTimer" class="tempHide">
-        <h1>Your test will start in </h1>
-        <div id="clockdiv">
-            <div>
-                <span class="hours"></span>:
-                {{--<div class="smalltext">Hours</div>--}}
-                <span class="minutes"></span>:
-                {{--<div class="smalltext">Minutes</div>--}}
-                <span class="seconds"></span>
-                {{--<div class="smalltext">Seconds</div>--}}
+        <div id="testTimer" class="tempHide">
+            <h1>Your test will start in </h1>
+            <div id="clockdiv">
+                <div>
+                    <span class="hours"></span>:
+                    {{--<div class="smalltext">Hours</div>--}}
+                    <span class="minutes"></span>:
+                    {{--<div class="smalltext">Minutes</div>--}}
+                    <span class="seconds"></span>
+                    {{--<div class="smalltext">Seconds</div>--}}
+                </div>
             </div>
         </div>
-    </div>
 
-    <div id="rickshaw" class="tempHide">
-        <div id="chart"></div>
-        <hr/>
-        <div>
-            <a href="{{url('#')}}"><button class="btn btn-primary">Email the result</button></a>
-            <a href="{{url('#')}}"><button class="btn btn-primary">Share the result</button></a>
-            <a href="{{url('/auth/register')}}"><button class="btn btn-primary">Sign Up for 100 user test</button></a>
+        <div id="rickshaw" class="tempHide">
+            <div id="y_axis"></div>
+            <div id="chart"></div>
+            <hr/>
+            <div>
+                <a href="{{url('#')}}"><button class="btn btn-primary">Email the result</button></a>
+                <a href="{{url('#')}}"><button class="btn btn-primary">Share the result</button></a>
+                <a href="{{url('/auth/register')}}"><button class="btn btn-primary">Sign Up for 100 user test</button></a>
+            </div>
+
+            {{--<div id="legend"></div>--}}
         </div>
     </div>
 @endsection
@@ -123,8 +128,8 @@
                         $("#testDiv").hide();
                         $("#testResponse").fadeIn();
                         $('#site').append(_response.url);
-                        $('#statusMessage').empty();
-                        $('#statusMessage').append(_response.msg);
+//                        $('#statusMessage').empty();
+                        $('#statusMessage').append('<br\>'+_response.msg);
                         setTimeout(function(){
                             startTest(_response.id);
                         }, 2000);
@@ -174,8 +179,8 @@
         // To check if log is generated or not
         function checkLog(id){
             $.get("{{url('/test/check/')}}/" + id, function (_response) {
-                $('#statusMessage').empty();
-                $('#statusMessage').append(_response.msg);
+//                $('#statusMessage').empty();
+                $('#statusMessage').append('<br\>'+_response.msg);
                 if(_response.msg!='test.fail')
                 {
                     // To call stopTest Function after 30 second
@@ -197,19 +202,20 @@
         // To start test
         function startTest(id){
             $.get("{{url('/test/start/')}}/" + id, function (_response) {
-                $('#statusMessage').empty();
-                $('#statusMessage').append('Starting your test');
+//                $('#statusMessage').empty();
+                $('#statusMessage').append('<br\>'+'Starting your test');
                 setTimeout(function(){
                     checkLog(id);
-                }, 2000);
+                }, 10000);
             });
         }
 
         // To forcibly stop test
         function stopTest(id){
             $.get("{{url('/test/stop/')}}/" + id, function (_response) {
-                $('#statusMessage').empty();
-                $('#statusMessage').append(_response.msg);
+//                $('#statusMessage').empty();
+                $('#stopTestDiv').hide();
+                $('#statusMessage').append('<br\>'+_response.msg);
             });
         }
 
@@ -221,8 +227,9 @@
                     if (_response.msg) {
                     // To stop checking status after test has ended
                         clearInterval(run);
-                        $('#statusMessage').empty();
-                        $('#statusMessage').append(_response.msg);
+//                        $('#statusMessage').empty();
+                        $('#stopTestDiv').hide();
+                        $('#statusMessage').append('<br\>'+_response.msg);
                         graph(id);
                     }
                 });
@@ -240,6 +247,10 @@
                 $('#rickshaw').fadeIn();
                 var graph = new Rickshaw.Graph.Ajax({
                     element: document.querySelector("#chart"),
+//                    width: 580,
+//                    height: 250,
+                    renderer: 'line',
+
                     dataURL: '/resultJson/'+_response.random_string+'.json',
                     onData: function (data) {
                         return data;
@@ -247,6 +258,17 @@
                     onComplete: function (transport) {
                         var graph = transport.graph;
                         var detail = new Rickshaw.Graph.HoverDetail({graph: graph});
+
+                        var xAxis = new Rickshaw.Graph.Axis.Time({
+                            graph: graph
+                        });
+
+                        xAxis.render();
+                        var yAxis = new Rickshaw.Graph.Axis.Y({
+                            graph: graph
+                        });
+
+                        yAxis.render();
                     },
                     series: [
                         {

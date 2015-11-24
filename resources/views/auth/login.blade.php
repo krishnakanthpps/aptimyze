@@ -1,40 +1,42 @@
 @extends('layouts.master')
 
 @section('content')
+    <div class="content">
 
-    <h1>Login</h1>
-    <hr/>
+        <h1>Login</h1>
+        <hr/>
 
-    {!! Form::open(['url' => '/auth/login', 'id'=> 'login',  'class' => 'form-horizontal']) !!}
-    <div class="form-group">
-        {!! Form::label('email', 'Email: ', ['class' => 'col-sm-3 control-label']) !!}
-        <div class="col-sm-6">
-            {!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => "Enter your email address"]) !!}
+        {!! Form::open(['url' => '/auth/login', 'id'=> 'login',  'class' => 'form-horizontal']) !!}
+        <div class="form-group">
+            {!! Form::label('email', 'Email: ', ['class' => 'col-sm-3 control-label']) !!}
+            <div class="col-sm-6">
+                {!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => "Enter your email address"]) !!}
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        {!! Form::label('password', 'Password: ', ['class' => 'col-sm-3 control-label']) !!}
-        <div class="col-sm-6">
-            {!! Form::password('password', ['class' => 'form-control', 'placeholder' => "Enter your password"]) !!}
+        <div class="form-group">
+            {!! Form::label('password', 'Password: ', ['class' => 'col-sm-3 control-label']) !!}
+            <div class="col-sm-6">
+                {!! Form::password('password', ['class' => 'form-control', 'placeholder' => "Enter your password"]) !!}
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-3 text-right">
-            {!! Form::checkbox('remember', null, ['class' => 'form-control', 'checked'=>'checked']) !!}
+        <div class="form-group">
+            <div class="col-sm-3 text-right">
+                {!! Form::checkbox('remember', null, ['class' => 'form-control', 'checked'=>'checked']) !!}
+            </div>
+            {!! Form::label('remember', 'Remember Me', ['class' => 'col-sm-3']) !!}
+            <div class="col-sm-3 text-right">
+                <a href="{{url('/password/email')}}">Forgot your password?</a>
+            </div>
         </div>
-        {!! Form::label('remember', 'Remember Me', ['class' => 'col-sm-3']) !!}
-        <div class="col-sm-3 text-right">
-            <a href="{{url('/password/email')}}">Forgot your password?</a>
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-3">
+                {!! Form::submit('Login', ['class' => 'btn btn-primary form-control']) !!}
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-3">
-            {!! Form::submit('Login', ['class' => 'btn btn-primary form-control']) !!}
-        </div>
-    </div>
 
-    {!! Form::close() !!}
+        {!! Form::close() !!}
 
+    </div>
 @endsection
 
 @section('pagejquery')

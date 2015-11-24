@@ -18,9 +18,9 @@ body {
 }
 
 .content {
-    text-align: center;
+    /*text-align: center;*/
     min-height: 500px;
-    display: inline-block;
+    /*display: inline-block;*/
 }
 
 .title {

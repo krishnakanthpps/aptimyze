@@ -10,4 +10,6 @@ return [
     'script'=>'Completed Creating Script',
 
     'stop'=>'Stopping your test',
+
+    'fail'=>'Sorry we could not start your test. Please try again'
 ];

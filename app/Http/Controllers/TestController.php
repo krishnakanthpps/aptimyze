@@ -122,8 +122,9 @@ class TestController extends Controller
             $test->save();
             return response()->json(['msg'=>trans('test.started')]);
         }
-		else
+		else{
 			return response()->json(['msg'=>trans('test.fail')]);
+		}
 	}
 
 	/**

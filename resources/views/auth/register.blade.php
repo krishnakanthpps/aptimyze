@@ -1,48 +1,49 @@
 @extends('layouts.master')
 
 @section('content')
+    <div class="content">
 
-    <h1>Register</h1>
-    <hr/>
+        <h1>Register</h1>
+        <hr/>
 
-    {!! Form::open(['url' => '/auth/register', 'id'=>'register', 'class' => 'form-horizontal']) !!}
-    <div class="form-group">
-        {!! Form::label('name', 'Name: ', ['class' => 'col-sm-3 control-label']) !!}
-        <div class="col-sm-6">
-            {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => "Enter your name"]) !!}
+        {!! Form::open(['url' => '/auth/register', 'id'=>'register', 'class' => 'form-horizontal']) !!}
+        <div class="form-group">
+            {!! Form::label('name', 'Name: ', ['class' => 'col-sm-3 control-label']) !!}
+            <div class="col-sm-6">
+                {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => "Enter your name"]) !!}
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        {!! Form::label('email', 'Email: ', ['class' => 'col-sm-3 control-label']) !!}
-        <div class="col-sm-6">
-            {!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => "Enter your email address"]) !!}
+        <div class="form-group">
+            {!! Form::label('email', 'Email: ', ['class' => 'col-sm-3 control-label']) !!}
+            <div class="col-sm-6">
+                {!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => "Enter your email address"]) !!}
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        {!! Form::label('phone', 'Phone: ', ['class' => 'col-sm-3 control-label']) !!}
-        <div class="col-sm-6">
-            {!! Form::text('phone', null, ['class' => 'form-control', 'placeholder' => "Enter your phone number"]) !!}
+        <div class="form-group">
+            {!! Form::label('phone', 'Phone: ', ['class' => 'col-sm-3 control-label']) !!}
+            <div class="col-sm-6">
+                {!! Form::text('phone', null, ['class' => 'form-control', 'placeholder' => "Enter your phone number"]) !!}
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        {!! Form::label('password', 'Password: ', ['class' => 'col-sm-3 control-label']) !!}
-        <div class="col-sm-6">
-            {!! Form::password('password', ['class' => 'form-control', 'placeholder' => "Enter a password"]) !!}
+        <div class="form-group">
+            {!! Form::label('password', 'Password: ', ['class' => 'col-sm-3 control-label']) !!}
+            <div class="col-sm-6">
+                {!! Form::password('password', ['class' => 'form-control', 'placeholder' => "Enter a password"]) !!}
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-3 text-right">
-            {!! Form::checkbox('signup_terms', 'forever', ['class' => 'form-control', 'checked'=>'checked']) !!}
+        <div class="form-group">
+            <div class="col-sm-3 text-right">
+                {!! Form::checkbox('signup_terms', 'forever', ['class' => 'form-control', 'checked'=>'checked']) !!}
+            </div>
+            {!! Form::label('signup_terms', 'I agree to the terms and conditions', ['class' => 'col-sm-6']) !!}
         </div>
-        {!! Form::label('signup_terms', 'I agree to the terms and conditions', ['class' => 'col-sm-6']) !!}
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-3">
-            {!! Form::submit('Register', ['class' => 'btn btn-primary form-control']) !!}
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-3">
+                {!! Form::submit('Register', ['class' => 'btn btn-primary form-control']) !!}
+            </div>
         </div>
+        {!! Form::close() !!}
     </div>
-    {!! Form::close() !!}
-
 @endsection
 
 @section('pagejquery')
